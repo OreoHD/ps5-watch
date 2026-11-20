@@ -1,0 +1,20 @@
+name: ps5-watch
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 ps5_watch.py
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      - run: |
+          git config user.name bot
+          git config user.email bot@example.com
+          git add ps5_seen.json || true
+          git diff --cached --quiet || (git commit -m seen && git push)
