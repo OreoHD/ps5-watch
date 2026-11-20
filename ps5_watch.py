@@ -3,7 +3,7 @@ from html.parser import HTMLParser
 
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "ps5-watch-AENDERE-MICH-123xyz")
 MIN_PREIS = 250
-MAX_PREIS = 400
+MAX_PREIS = 3000
 INTERVALL_SEK = 300
 STATE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ps5_seen.json")
 
