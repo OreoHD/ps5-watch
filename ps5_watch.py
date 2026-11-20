@@ -160,4 +160,22 @@ def lauf(debug=False):
                 except Exception as e:
                     print(f"Push fehlgeschlagen: {e}", file=sys.stderr)
     json.dump(sorted(gesehen), open(STATE_FILE, "w"))
-    print(f"Fertig, {ne
+    print(f"Fertig, {neu} neue Treffer.")
+
+
+if __name__ == "__main__":
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--loop", action="store_true")
+    ap.add_argument("--debug", action="store_true")
+    ap.add_argument("--test", action="store_true")
+    a = ap.parse_args()
+    if a.test:
+        push("PS5-Watcher Test", "Wenn du das siehst, klappt die Benachrichtigung.", "https://www.ricardo.ch/de/s/ps5")
+        print("Testnachricht gesendet an:", NTFY_TOPIC)
+    elif a.loop:
+        while True:
+            lauf(a.debug)
+            time.sleep(INTERVALL_SEK)
+    else:
+        lauf(a.debug)
+
