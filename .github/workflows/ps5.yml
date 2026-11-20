@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 ps5_watch.py
+      - run: python3 ps5_watch.py --debug
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
       - run: |
